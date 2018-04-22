@@ -19,13 +19,13 @@ import spacy
 
 nlp= spacy.load('en')
 df= pd.read_csv("C:\\Users\\soura\\Downloads\\Amazon scrape\\Amazon scrape\\output.csv")
-#print(df)
+print(df)
 
 #cleaning the data frame to remove the unnecesary variables and words
 df['rating']= df['rating'].str.extract('(\d+)', expand=True)
 df['rating'].astype(int)
 df['review_date']= pd.to_datetime(df['review_date'], format= "%d-%b-%y")
-#print(df['review_date'].sort_values())
+print(df['review_date'].sort_values())
 
 #Filtering the data to get the values from 1 january 2017 until the day of scraping
 mask = (df['review_date'] > '12-12-2016') & (df['review_date'] <= '15-4-2018')
@@ -59,12 +59,12 @@ def noun_adj_verb_filter(sentences):
     return preprocessed_sentences
 
 preproc_sents = noun_adj_verb_filter(df['review'])
-#print(preproc_sents)
+print(preproc_sents)
 
 cv = CountVectorizer(lowercase=True, stop_words='english',)
 data1 = cv.fit_transform(preproc_sents)
-#print(data.toarray())
-#print(cv.get_feature_names())
+print(data.toarray())
+print(cv.get_feature_names())
 
 #evaluating the length of review and plotting it for available observations
 text_length = df['review'].apply(len)
