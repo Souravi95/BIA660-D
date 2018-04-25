@@ -68,7 +68,7 @@ print(cv.get_feature_names())
 
 #evaluating the length of review and plotting it for available observations
 text_length = df['review'].apply(len)
-print(df['text_length'].describe())
+print(text_length)
 plt.hist(text_length)
 plt.xlabel("review length")
 plt.ylabel("Number of reviews")
